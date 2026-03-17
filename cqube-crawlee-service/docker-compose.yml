@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  crawlee-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cqube-crawlee-service
+    ports:
+      - "3000:3000"
+    environment:
+      - API_KEY=test_api_key_1234
+      - LOG_LEVEL=debug
+      - PORT=3000
+    restart: unless-stopped
+    # Depending on the system, Playwright in Docker might require extra shm size
+    shm_size: '1gb'
